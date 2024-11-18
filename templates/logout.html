@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Logged Out</title>
+</head>
+<body>
+<main>
+    <section class="form">
+        <div class="logo">
+            <img src="{{ MEDIA_URL }}logo.svg" alt="Logo" style="max-width: 100%; height: auto;">
+        </div>
+
+        <h1 class="form__title">You Have Logged Out</h1>
+
+        <p class="form__description">
+            Thank you for using MelodiX. See you again soon!
+        </p>
+
+        <button class="form__submit" onclick="location.href='{% url 'login' %}'">Log In Again</button>
+    </section>
+</main>
+</body>
+</html>

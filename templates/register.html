@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Register</title>
+</head>
+<body>
+<main>
+    <section class="form">
+        <div class="logo">
+            <img src="{{ MEDIA_URL }}logo.svg" alt="Logo" style="max-width: 100%; height: auto;">
+        </div>
+
+        <h1 class="form__title">Create a New Account</h1>
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.username.errors }}
+            <input type="text" name="username" class="form-control" placeholder="Username" required>
+
+            {{ form.email.errors }}
+            <input type="email" name="email" class="form-control" placeholder="Email" required>
+
+            {{ form.password1.errors }}
+            <input type="password" name="password1" class="form-control" placeholder="Password" required>
+
+            {{ form.password2.errors }}
+            <input type="password" name="password2" class="form-control" placeholder="Confirm Password" required>
+
+            <button type="submit" class="form__submit" id="submit">Register</button>
+        </form>
+
+        <p class="form__footer">
+            Already have an account? <a href="{% url 'login' %}">Log In</a>
+        </p>
+    </section>
+</main>
+</body>
+</html>

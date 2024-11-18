@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Password Reset Sent</title>
+</head>
+<body>
+<main>
+    <section class="form">
+        <div class="logo">
+            <img src="{{ MEDIA_URL }}logo.svg" alt="Logo" style="max-width: 100%; height: auto;">
+        </div>
+
+        <h1 class="form__title">Check Your Email</h1>
+
+        <p class="form__description">
+            We’ve sent password reset instructions to your email. Follow the link in the email to reset your password.
+        </p>
+
+        <button class="form__submit" onclick="location.href='{% url 'login' %}'">Back to Log In</button>
+    </section>
+</main>
+</body>
+</html>

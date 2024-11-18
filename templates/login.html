@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Log In</title>
+</head>
+<body>
+<main>
+    <section class="form">
+        <div class="logo">
+            <img src="{{ MEDIA_URL }}logo.svg" alt="Logo" style="max-width: 100%; height: auto;">
+        </div>
+
+        <h1 class="form__title">Login to MelodiX</h1>
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <input type="text" name="username" class="form-control" placeholder="Email or Username" required>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <div class="password__settings">
+                <label class="password__settings__remember">
+                    <input type="checkbox" name="remember_me">
+                    <span class="custom__checkbox"></span>
+                    Remember me
+                </label>
+                <a href="{% url 'password_forgot' %}">Forgot Password?</a>
+            </div>
+            <button type="submit" class="form__submit" id="submit">Log In</button>
+        </form>
+        <p class="form__footer">
+            Don't have an account? <a href="{% url 'register' %}">Register Now</a>
+        </p>
+    </section>
+</main>
+</body>
+</html>

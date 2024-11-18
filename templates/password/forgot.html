@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Forgot Password</title>
+</head>
+<body>
+<main>
+    <section class="form">
+        <div class="logo">
+            <img src="{{ MEDIA_URL }}logo.svg" alt="Logo" style="max-width: 100%; height: auto;">
+        </div>
+
+        <h1 class="form__title">Forgot Password?</h1>
+
+        <p class="form__description">
+            Enter your email address, and we’ll send you instructions to reset your password.
+        </p>
+
+        <form method="post" action="#">
+            {% csrf_token %}
+            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+            <button type="submit" class="form__submit" id="submit">Send Reset Instructions</button>
+        </form>
+
+        <p class="form__footer">
+            Remember your password? <a href="{% url 'login' %}">Log In</a>
+        </p>
+    </section>
+</main>
+</body>
+</html>
