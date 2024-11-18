@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Setup Two-Factor Authentication</title>
+</head>
+<body>
+<main>
+    <section class="form">
+        <div class="logo">
+            <img src="{{ MEDIA_URL }}logo.svg" alt="Logo" style="max-width: 100%; height: auto;">
+        </div>
+
+        <h1 class="form__title">Setup Two-Step Authentication</h1>
+
+        <p class="form__description">
+            Scan the QR code below using your Google Authenticator app and enter the OTP to complete the setup.
+        </p>
+
+        <!-- Display the dynamically generated QR code -->
+        <div class="qr-code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ qr_code_url }}" alt="QR Code">
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="otp" class="form-control" placeholder="Enter OTP" required>
+            <button type="submit" class="form__submit">Verify</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

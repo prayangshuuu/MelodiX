@@ -17,8 +17,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # Custom apps
     'melodixapp.apps.MelodixappConfig',
+
+    # Two-step authentication dependencies
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_static',
+    'two_factor',
+    'qrcode',
 ]
 
 # Middleware
@@ -28,6 +36,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',  # Middleware for two-step authentication
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -47,13 +56,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'MelodiX.context_processors.media_url',  # Custom Context Processor
+                'MelodiX.context_processors.media_url',  # Custom context processor for MEDIA_URL
             ],
         },
     },
 ]
-
-
 
 # WSGI application
 WSGI_APPLICATION = 'MelodiX.wsgi.application'
@@ -72,6 +79,9 @@ DATABASES = {
 
 # Authentication settings
 AUTH_USER_MODEL = 'melodixapp.User'  # Custom user model
+LOGIN_URL = '/login/'  # URL for login
+LOGIN_REDIRECT_URL = '/dashboard/'  # Redirect after login
+LOGOUT_REDIRECT_URL = '/logout/'  # Redirect to custom logout page
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -96,3 +106,17 @@ MEDIA_ROOT = BASE_DIR / 'media'  # Directory for media files
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Two-factor authentication settings
+TWO_FACTOR_CALL_GATEWAY = None  # Disable call-based OTP
+TWO_FACTOR_SMS_GATEWAY = None  # Disable SMS-based OTP
+
+# Session settings
+SESSION_COOKIE_AGE = 1800  # Session timeout (30 minutes)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Expire session on browser close
+
+# Debug Toolbar (Optional for development)
+if DEBUG:
+    INTERNAL_IPS = [
+        '127.0.0.1',
+    ]
