@@ -17,4 +17,7 @@ urlpatterns = [
     path('two_factor/setup/', views.setup_two_factor, name='setup_two_factor'),
     path('two_factor/verify/', views.verify_two_factor, name='verify_two_factor'),
     path('two_factor/resend/', views.resend_two_factor, name='resend_two_factor'),
+
+    # User profile view
+    path('profile/<str:username>/', views.profile_view, name='profile'),  # Fixed singular path
 ]

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+<main>
+    <section class="form">
+        <!-- Profile Picture Section -->
+        <div class="logo">
+            <img src="{{ profile_picture }}" alt="{{ username }}'s profile picture">
+        </div>
+
+        <!-- Welcome Message -->
+        <h1 class="form__title">Welcome Back, {{ name }}!</h1>
+
+        <!-- Logout Button -->
+        <a href="{% url 'logout' %}" class="form__submit">Logout</a>
+    </section>
+</main>
+</body>
+</html>

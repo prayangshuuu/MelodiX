@@ -1,2 +1,64 @@
-<h1>Welcome Back, {{ name }}!</h1>
-<a href="{% url 'logout' %}">Logout</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+    <!-- Top Navigation Menu -->
+    <header class="dashboard-menu">
+        <div class="menu-profile">
+            <img src="{{ profile_picture }}" alt="Profile Picture">
+            <div class="dropdown-content">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <div class="dashboard-inner-box">
+            <!-- Profile Picture -->
+            <div class="dashboard-logo">
+                <img src="{{ profile_picture }}" alt="{{ username }}'s profile picture">
+            </div>
+
+            <!-- Welcome Message -->
+            <h1 class="dashboard-title">Welcome Back, {{ username }}!</h1>
+
+            <!-- 3 Statistics Boxes -->
+            <div class="dashboard-stats">
+                <div class="dashboard-stat-box">
+                    <h2>Total Releases</h2>
+                    <p>10</p>
+                </div>
+                <div class="dashboard-stat-box">
+                    <h2>Active Releases</h2>
+                    <p>8</p>
+                </div>
+                <div class="dashboard-stat-box">
+                    <h2>Inactive Releases</h2>
+                    <p>2</p>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dashboard-button">Log Out</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="dashboard-footer">
+        <p>Designed & Developed By <strong>OraclePie Solutions</strong> & <strong>Prayangshu</strong></p>
+    </footer>
+</body>
+</html>

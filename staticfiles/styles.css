@@ -1,0 +1,264 @@
+/* author: https://prayangshu.com */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100&display=swap');
+
+:root {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: #000;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Flexbox for centering */
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  height: auto;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: #f7f8fa;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+section.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.form__title {
+  text-align: center;
+  color: #030712;
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 24px;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  margin-bottom: 4px;
+}
+
+.logo img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+form {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 32px;
+}
+
+.form-control__label {
+  display: block;
+  margin: 14px 0 4px;
+  color: #0d0c22;
+  font-weight: 500;
+}
+
+.form-control {
+  height: 52px;
+  display: block;
+  width: 100%;
+  border: 1px solid #6b7280;
+  padding: 18px 20px;
+  transition: outline 200ms ease, box-shadow 200ms ease;
+  border-radius: 12px;
+  outline: none;
+  background-color: #fff;
+  color: #0d0c22;
+  margin-bottom: 28px;
+  font-size: 16px;
+}
+
+.form-control:focus {
+  border-color: #0d0c22;
+  box-shadow: 0 0 0 4px rgb(0 0 0 / 10%);
+}
+
+.form-control:user-invalid {
+  border-color: #dc2626;
+}
+
+.form-control:user-invalid:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgb(220, 38, 38, .1);
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field svg {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 13px;
+  top: 13px;
+}
+
+.form__submit {
+  height: 52px;
+  width: 100%;
+  display: block;
+  background: #0d0c22;
+  border-radius: 100px;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.form__submit:hover {
+  box-shadow: 0 -1px 10px rgba(13,12,34, 0.3);
+}
+
+.password__settings {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.password__settings__remember {
+  font-size: 14px;
+  color: #0d0c22;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.password__settings__remember input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  margin: 0;
+}
+
+.custom__checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1px solid #6b7280;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s;
+}
+
+.custom__checkbox svg {
+  transform: scale(0);
+  width: 16px;
+  height: 16px;
+}
+
+input:focus + .custom__checkbox {
+  border-color: #0d0c22;
+  box-shadow: 0 0 0 4px rgb(0 0 0 / 10%);
+}
+
+input:checked + .custom__checkbox svg {
+  transform: scale(1);
+}
+
+a {
+  font-size: 14px;
+  color: #0875e4;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.form__description {
+  color: #4a5568; /* Slightly darker text for emphasis */
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.form__footer {
+  font-size: 14px;
+  text-align: center;
+  margin: 32px 0 0;
+}
+
+/* 404 Page Styles */
+body.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f7f8fa;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+body.error-page img.logo {
+  margin-bottom: 40px;
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+body.error-page p {
+  font-size: 24px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 60px;
+  line-height: 1.5;
+}
+
+body.error-page a {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: #0d0c22;
+  color: #fff;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+body.error-page a:hover {
+  background-color: #030712;
+  box-shadow: 0 4px 10px rgba(13, 12, 34, 0.3);
+}

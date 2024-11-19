@@ -5,8 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = 'django-insecure-2+xb6ik@!a=soujx7dov7w5zh!%+f=n$hn+#qkchw*t1w6l-2#'
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = True  # Set DEBUG to True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Installed applications
 INSTALLED_APPS = [
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Serve static files with WhiteNoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -100,6 +101,7 @@ USE_TZ = True
 # Static and media files
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # Directory for static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where static files are collected
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'  # Directory for media files
@@ -115,8 +117,20 @@ TWO_FACTOR_SMS_GATEWAY = None  # Disable SMS-based OTP
 SESSION_COOKIE_AGE = 1800  # Session timeout (30 minutes)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Expire session on browser close
 
+# Static file compression with WhiteNoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Debug Toolbar (Optional for development)
 if DEBUG:
     INTERNAL_IPS = [
         '127.0.0.1',
     ]
+
+# Custom 404 error handling
+def show_custom_404(request, exception):
+    """Custom 404 error page."""
+    from django.shortcuts import render
+    return render(request, 'errors/404.html', status=404)
+
+# Set the custom 404 handler
+handler404 = 'melodixapp.views.custom_404_view'

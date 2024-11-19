@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="https://prayangshu.com">
+  <title>404 - Page Not Found</title>
+  {% load static %} <!-- Load static template tag -->
+  <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- Reference your CSS file -->
+</head>
+<body class="error-page"> <!-- Add error-page class for specific styles -->
+  <!-- Logo -->
+  <img src="{% static 'logo.svg' %}" alt="Logo" class="logo"> <!-- Reference your logo -->
+
+  <!-- Message -->
+  <p>Oops! The page you are looking for doesn’t exist.</p>
+
+  <!-- Button -->
+  <a href="/">Go Back Home</a>
+</body>
+</html>
