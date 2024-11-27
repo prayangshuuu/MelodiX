@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Release - Step 3</title>
+</head>
+<body>
+    <h1>Create Release - Step 3: Finalize and Store Selection</h1>
+
+    <h2>Release Information</h2>
+    <p><strong>Title:</strong> {{ release.title }}</p>
+    <p><strong>Label:</strong> {{ release.label.name }}</p>
+    <p><strong>Format:</strong> {{ release.get_release_format_display }}</p>
+
+    <h2>Select Stores</h2>
+    <ul>
+        {% for store in stores %}
+            <li>
+                <input type="checkbox" name="stores" value="{{ store.id }}">
+                <img src="{{ store.logo.url }}" alt="{{ store.name }}" style="height: 50px;"> {{ store.name }} ({{ store.get_store_type_display }})
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Finalize Release</button>
+    </form>
+</body>
+</html>

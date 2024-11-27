@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Release - Step 2</title>
+</head>
+<body>
+    <h1>Create Release - Step 2: Add Tracks</h1>
+
+    <h2>Tracks for "{{ release.title }}"</h2>
+    <ul>
+        {% for track in tracks %}
+            <li>{{ track.title }} - {{ track.type }}</li>
+        {% empty %}
+            <li>No tracks added yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add New Track</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Track</button>
+    </form>
+
+    <a href="{% url 'create_release_step_3' %}">Proceed to Finalize Release</a>
+</body>
+</html>
